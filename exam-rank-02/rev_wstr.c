@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rev_wstr.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eelaine <eelaine@student.hive.fi>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/25 14:49:33 by eelaine           #+#    #+#             */
+/*   Updated: 2024/11/25 14:50:50 by eelaine          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 #include <stdlib.h>
 
 int	ft_strlen(char *str)
 {
-	int i;
+	int	i;
+
 	i = -1;
 	while (str[++i])
 		;
@@ -17,9 +30,9 @@ void	ft_putchar(char c)
 
 int	main(int ac, char **av)
 {
-	int	len;
-	char *rev;
-	char *tmp;
+	int		len;
+	char	*rev;
+	char	*tmp;
 
 	if (ac == 2)
 	{

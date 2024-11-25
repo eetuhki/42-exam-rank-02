@@ -1,43 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   repeat_alpha.c                                     :+:      :+:    :+:   */
+/*   fizzbuzz.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eelaine <eelaine@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 14:51:04 by eelaine           #+#    #+#             */
-/*   Updated: 2024/11/25 14:51:06 by eelaine          ###   ########.fr       */
+/*   Created: 2024/11/25 14:49:13 by eelaine           #+#    #+#             */
+/*   Updated: 2024/11/25 14:49:16 by eelaine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	main(int ac, char **av)
+void	ft_putnbr(int n)
 {
-	int i;
-	int	j;
+	char	c;
 
-	i = -1;
-	j = 0;
-	if (ac != 2)
-		write(1, "\n", 1);
-	else
+	if (n >= 10)
+		ft_putnbr(n / 10);
+	c = (n % 10) + '0';
+	write(1, &c, 1);
+}
+
+void	ft_putstr(char *str)
+{
+	while (*str)
+		write(1, str++, 1);
+}
+
+int	main(void)
+{
+	int	n;
+
+	n = 1;
+	while (n <= 100)
 	{
-		while (av[1][++i] != '\0')
+		if (n % 3 == 0 && n % 5 == 0)
+			ft_putstr("fizzbuzz\n");
+		else if (n % 3 == 0)
+			ft_putstr("fizz\n");
+		else if (n % 5 == 0)
+			ft_putstr("buzz\n");
+		else
 		{
-			if (av[1][i] >= 'a' && av[1][i] <= 'z')
-				j = av[1][i] - 96;
-			else if (av[1][i] >= 'A' && av[1][i] <= 'Z')
-				j = av[1][i] - 64;
-			else
-				write(1, &av[1][i], 1);
-			if (j)
-			{
-				while (j-- >= 1)
-					write(1, &av[1][i], 1);
-			}
+			ft_putnbr(n);
+			write(1, "\n", 1);
 		}
-		write(1, "\n", 1);
+		n++;
 	}
 	return (0);
 }
