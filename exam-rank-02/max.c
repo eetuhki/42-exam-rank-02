@@ -1,8 +1,19 @@
-int		max(int* tab, unsigned int len)
-{
-	int n;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   max.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eelaine <eelaine@student.hive.fi>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/27 12:07:29 by eelaine           #+#    #+#             */
+/*   Updated: 2024/11/27 12:51:29 by eelaine          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-	n = 1;
+int	max(int *tab, unsigned int len)
+{
+	int	n;
+
 	if (!tab || len == 0)
 		return (0);
 	n = tab[0];
@@ -13,3 +24,13 @@ int		max(int* tab, unsigned int len)
 	}
 	return (n);
 }
+
+/* #include <stdio.h>
+
+int	main()
+{
+	int tab[] = {11, -1, 4, -4, 4, 67, -68, 30};
+
+	printf("max: %d\n", max(tab, 8));
+	return (0);
+} */
