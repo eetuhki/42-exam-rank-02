@@ -1,46 +1,34 @@
 #include <stdlib.h>
-/* #include <stdio.h> */
 
 int	ft_abs(int n)
 {
 	if (n < 0)
-		return(-n);
-	else
-		return (n);
+		return (-n);
+	return (n);
 }
 
-int     *ft_range(int start, int end)
+int	*ft_range(int start, int end)
 {
 	int	*array;
-	int	size;
-	int	i;
+	int	len;
+	int	i = -1;
 
-	size = ft_abs(end - start) + 1;
-	array = malloc(sizeof(int) * size);
+	len = ft_abs(end - start) + 1;
+	array = malloc(sizeof(int) * len);
 	if (!array)
 		return (NULL);
-	i = 0;
-	if (start < end)
+	while (++i < len)
 	{
-		while (start <= end)
-		{
-			array[i] = start;
-			start++;
-			i++;
-		}
-	}
-	else
-	{
-		while (start >= end)
-		{
-			array[i] = start;
-			start--;
-			i++;
-		}
+		if (start < end)
+			array[i] = start++;
+		else
+			array[i] = start--;
 	}
 	return (array);
 }
 /* 
+#include <stdio.h>
+
 int	main(int ac, char **av)
 {
 	int len;
