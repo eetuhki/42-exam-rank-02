@@ -1,54 +1,35 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   tab_mult.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eelaine <eelaine@student.hive.fi>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/27 15:27:53 by eelaine           #+#    #+#             */
-/*   Updated: 2024/11/27 15:27:56 by eelaine          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <unistd.h>
 
-int	atoi(char *str)
+void	putnbr(int n)
 {
-	int n;
-	int	i;
+	char	c;
 
-	n = 0;
-	i = 0;
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		n = n * 10 + str[i] - '0';
-		i++;
-	}
-	return (n);
+	if (n > 9)
+		putnbr (n / 10);
+	c = n % 10 + '0';
+	write(1, &c, 1);
 }
 
-void	putnbr(int nbr)
+int	ft_atoi(char *s)
 {
-	char c;
+	int	n;
 
-	if (nbr > 9)
-		putnbr(nbr / 10);
-	c = nbr % 10 + '0';
-	write(1, &c, 1);
+	n = 0;
+	while (*s)
+		n = n * 10 + *s++ - '0';
+	return (n);
 }
 
 int	main(int ac, char **av)
 {
-	int i;
+	int	i;
 	int	n;
 
-	i = 0;
-	if (ac != 2)
-		write(1, "\n", 1);
-	else
+	if (ac == 2)
 	{
-		n = atoi(av[1]);
-		while (++i <= 9)
+		i = 0;
+		n = ft_atoi(av[1]);
+		while (++i < 10)
 		{
 			putnbr(i);
 			write(1, " x ", 3);
@@ -58,5 +39,7 @@ int	main(int ac, char **av)
 			write(1, "\n", 1);
 		}
 	}
+	else
+		write(1, "\n", 1);
 	return (0);
 }
