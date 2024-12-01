@@ -1,37 +1,28 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eelaine <eelaine@student.hive.fi>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/27 12:54:39 by eelaine           #+#    #+#             */
-/*   Updated: 2024/11/27 15:14:27 by eelaine          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include <stdlib.h>
 
-int	num_len(int n)
+int	num_len(int	n)
 {
-	int	len;
+	int	i;
 
-	len = 0;
+	i = 0;
 	if (n <= 0)
-		len++;
+		i++;
 	while (n)
 	{
-		len++;
+		i++;
 		n /= 10;
 	}
-	return (len);
+	return (i);
 }
 
 char	*ft_itoa(int nbr)
 {
-	int		len;
 	char	*res;
+	int		len;
 
+	if (!nbr)
+		return ("0");
 	len = num_len(nbr);
 	res = malloc(sizeof(char) * (len + 1));
 	if (!res)
@@ -42,8 +33,6 @@ char	*ft_itoa(int nbr)
 		res[0] = '-';
 		nbr = -nbr;
 	}
-	if (nbr == 0)
-		res[0] = '0';
 	while (nbr)
 	{
 		res[--len] = nbr % 10 + '0';
@@ -56,13 +45,7 @@ char	*ft_itoa(int nbr)
 
 int	main()
 {
-	int		n;
-	char	*res;
-
-	n = -838320;
-	res = ft_itoa(n);
-	printf("res: %s\n", res);
-	free(res);
+	printf("%s\n", ft_itoa(98598));
 	return (0);
 }
  */
