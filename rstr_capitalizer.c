@@ -13,7 +13,7 @@ int	main(int ac, char **av)
 			j = -1;
 			while (av[i][++j])
 			{
-				if ((av[i][j] >= 'A' && av[i][j] <= 'Z') && (av[i][j + 1] != '\0' && av[i][j + 1] != ' ' && av[i][j] != '\t'))
+				if (av[i][j] >= 'A' && av[i][j] <= 'Z')
 					av[i][j] += 32;
 				else if ((av[i][j] >= 'a' && av[i][j] <= 'z') && (av[i][j + 1] == '\0' || av[i][j + 1] == ' ' || av[i][j] == '\t'))
 					av[i][j] -= 32;
