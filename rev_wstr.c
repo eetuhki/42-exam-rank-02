@@ -1,68 +1,32 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   rev_wstr.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eelaine <eelaine@student.hive.fi>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 14:49:33 by eelaine           #+#    #+#             */
-/*   Updated: 2024/11/25 14:50:50 by eelaine          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <unistd.h>
-#include <stdlib.h>
-
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = -1;
-	while (str[++i])
-		;
-	return (i);
-}
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
 
 int	main(int ac, char **av)
 {
-	int		len;
-	char	*rev;
-	char	*tmp;
+	int		i;
+	int		start;
+	int		end;
+	int		space;
 
 	if (ac == 2)
 	{
-		len = ft_strlen(av[1]);
-		tmp = av[1];
-		rev = NULL;
-		len--;
-		while (tmp[len])
+		i = 0;
+		while (av[1][i])
+			i++;
+		while (i > 0)
 		{
-			if (tmp[len - 1] == ' ')
-			{
-				rev = &tmp[len];
-				while (*rev && *rev != ' ')
-				{
-					ft_putchar(*rev);
-					rev++;
-				}
-				ft_putchar(' ');
-			}
-			else if (len == 0)
-			{
-				rev = &tmp[len];
-				while (*rev && *rev != ' ')
-				{
-					ft_putchar(*rev);
-					rev++;
-				}
-			}
-			len--;
+			while (av[1][i] == '\0' || av[1][i] == ' ' || av[1][i] == '\t')
+				i--;
+			end = i;
+			while (av[1][i] && av[1][i] != ' ' && av[1][i] != '\t')
+				i--;
+			start = i + 1;
+			space = start;
+			while (start <= end)
+				write(1, &av[1][start++], 1);
+			if (space)
+				write(1, " ", 1);
 		}
 	}
-	ft_putchar('\n');
+	write(1, "\n", 1);
+	return (0);
 }
