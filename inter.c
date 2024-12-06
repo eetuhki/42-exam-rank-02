@@ -3,7 +3,7 @@
 int	main(int ac, char **av)
 {
 	int	i;
-	int j;
+	int	j;
 	unsigned char	dup[256] = {0};
 
 	if (ac == 3)
