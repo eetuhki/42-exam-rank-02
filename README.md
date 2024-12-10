@@ -1,1 +1,1 @@
-These are my solutions to the 42 school exam exercises I've encountered on my Hive Helsinki journey thus far.
+These are my solutions to the exercises of the first 42 school exam (Rank 02) I've encountered on my Hive Helsinki journey thus far.
