@@ -1,28 +1,28 @@
 int	ft_atoi_base(const char *str, int str_base)
 {
-	int		result = 0;
-	int		sign = 1;
-	int		i = 0;
+	int		i;
 	int		digit;
+	int		sign;
+	int		result;
 	char	c;
 
-	if (str_base < 2 || str_base > 36)
+	if (str_base < 2 || str_base > 16)
 		return (0);
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
+	i = 0;
+	sign = 1;
+	result = 0;
 	if (str[i] == '-')
 	{
-		sign = -1;
 		i++;
+		sign = -1;
 	}
-	else if (str[i] == '+')
+	if (str[i] == '+')
 		i++;
 	while (str[i])
 	{
 		c = str[i];
-
 		if (c >= 'A' && c <= 'Z')
-			c = c + 32;
+			c += 32;
 		if (c >= '0' && c <= '9')
 			digit = c - '0';
 		else if (c >= 'a' && c <= 'z')
