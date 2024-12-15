@@ -3,86 +3,80 @@
 
 char	**ft_split(char *str)
 {
+	int	i;
+	int	word;
+	int	wc;
+	int	word_len;
+	int	start;
 	char	**result;
-	int		word_count = 0;
-	int		i = 0;
-	int		j;
 
-	// Count words
+	i = 0;
+	wc = 0;
 	while (str[i])
 	{
-		// Skip whitespaces
 		while (str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'))
 			i++;
-		
-		// If we found a word
 		if (str[i])
-		{
-			word_count++;
-			// Skip to end of word
+		{	
+			wc++;
 			while (str[i] && str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
 				i++;
 		}
 	}
-
-	// Allocate memory for result array
-	result = (char **)malloc((word_count + 1) * sizeof(char *));
+	result = (char **)malloc(sizeof(char *) * (wc + 1));
 	if (!result)
 		return (NULL);
-
-	// Reset for second pass
 	i = 0;
-	j = 0;
-
-	// Copy words
+	word = 0;
 	while (str[i])
 	{
-		// Skip whitespaces
 		while (str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'))
 			i++;
-		
-		// If we found a word
 		if (str[i])
 		{
-			int word_len = 0;
-			int start = i;
-
-			// Measure word length
+			word_len = 0;
+			start = i;
 			while (str[i] && str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
 			{
-				word_len++;
 				i++;
+				word_len++;
 			}
-
-			// Allocate and copy word
-			result[j] = (char *)malloc((word_len + 1) * sizeof(char));
-			if (!result[j])
-			{
-				// Free previously allocated memory
-				while (j > 0)
-				{
-					j--;
-					free(result[j]);
-				}
-				free(result);
+			result[word] = (char *)malloc(sizeof(char) * (word_len + 1));
+			if (!result[word])
 				return (NULL);
-			}
-
-			// Copy word
 			word_len = 0;
 			while (str[start] && str[start] != ' ' && str[start] != '\t' && str[start] != '\n')
 			{
-				result[j][word_len] = str[start];
+				result[word][word_len] = str[start];
 				word_len++;
 				start++;
 			}
-			result[j][word_len] = '\0';
-			j++;
+			result[word][word_len] = '\0';
+			word++;
 		}
 	}
-
-	// Null terminate the array
-	result[j] = NULL;
-
+	result[word] = NULL;
 	return (result);
 }
+
+/* 
+#include <stdio.h>
+
+int	main()
+{	
+	char test[] = "         one two         three        ";
+	char **result;
+	int	i;
+
+	result = ft_split(test);
+	i = 0;
+	while (result[i])
+	{
+		printf("word: %s\n", result[i]);
+		free(result[i]);
+		i++;
+	}
+	free(result);
+	return (0);
+}
+ */
